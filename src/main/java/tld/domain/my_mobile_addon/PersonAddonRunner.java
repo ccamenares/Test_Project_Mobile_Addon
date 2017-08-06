@@ -6,6 +6,28 @@ import io.testproject.java.enums.DriverType;
 
 public class PersonAddonRunner {
 	
+	
+	public static void main(String[] args) throws Exception {
+		try {
+			// Initialize driver settings
+			driverSettings = getDriverSettings();
+			// Initialize the runner
+			runner = new TestProjectRunner(devToken, driverSettings, true);
+
+			// Run the AddPerson action
+			runAddPersonCodeBlock("John", "Smith");
+			// Run the FindPerson element action
+			runFindPersonCodeBlock("John Smith");
+
+		} catch (Throwable e) {
+			// Handle failure...
+
+		} finally {
+			// Close the runner (also closes the application)
+			runner.close();
+		}
+	}
+	
 	private static void runAddPersonCodeBlock(String firstName, String lastName) {
 		try {
 			// Create an instance of the AddPerson action
