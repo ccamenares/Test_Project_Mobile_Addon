@@ -15,7 +15,7 @@ public class AddPersonAction extends Action {
 	
 	@Override
 	protected ExecutionResultType execute() throws Exception {
-		
+		try {
 		// Get the driver
 		AndroidDriver<MobileElement> androidDriver = this.getAndroidDriver(MobileElement.class);
 		
@@ -32,8 +32,14 @@ public class AddPersonAction extends Action {
 		// Find the Add button and click it
 		MobileElement addButtonElement = androidDriver.findElement(By.id("add"));
 		addButtonElement.click();
+		return ExecutionResultType.Passed;
 		
-		return null;
+		}
+		catch (Exception ex) {
+			setMessage(ex.getMessage());
+			return ExecutionResultType.Failed;
+		}
+
 	}
 
 }
