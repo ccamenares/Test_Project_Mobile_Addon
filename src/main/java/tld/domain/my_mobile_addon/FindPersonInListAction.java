@@ -27,9 +27,17 @@ public class FindPersonInListAction extends ElementAction {
 				break;
 			}
 		}
-
 		
-		return null;
+		// Checking if the element was found or not
+		if (index == -1) {
+			setMessage(fullName + " was not found in the list");
+			return ExecutionResultType.Failed;
+		}
+		else {
+			setMessage(fullName + " was found at position: " + index);
+			return ExecutionResultType.Passed;
+		}
+
 	}
 
 }
