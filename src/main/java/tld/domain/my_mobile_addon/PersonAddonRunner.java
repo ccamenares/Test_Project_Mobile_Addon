@@ -1,11 +1,19 @@
 package tld.domain.my_mobile_addon;
 
+import org.openqa.selenium.By;
+
 import io.testproject.java.classes.DriverSettings;
 import io.testproject.java.classes.MobileDriverSettings;
 import io.testproject.java.enums.DriverType;
+import io.testproject.java.sdk.generated.TestProjectRunner;
 
 public class PersonAddonRunner {
 	
+	static String devToken = "YOUR_DEV_TOKEN_GOES_HERE";
+	// Driver settings
+	private static DriverSettings driverSettings;
+	// The runner
+	private static TestProjectRunner runner;
 	
 	public static void main(String[] args) throws Exception {
 		try {
