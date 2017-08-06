@@ -13,31 +13,35 @@ public class FindPersonInListAction extends ElementAction {
 	
 	@Override
 	protected ExecutionResultType execute() throws Exception {
-		
-		// Get containing element that was passed by the runner
-		MobileElement personsList = this.getElement(MobileElement.class);
-		
-		index = -1;
-		// Getting all child elements in the "persons" list element
-		List<MobileElement> entries = personsList.findElementsByXPath(".//*");
-		// Looking for the relevant element
-		for (int i = 0; i < entries.size(); i++) {
-			if (entries.get(i).getText().equals(fullName)) {
-				index = i;
-				break;
+		try {
+			// Get containing element that was passed by the runner
+			MobileElement personsList = this.getElement(MobileElement.class);
+			
+			index = -1;
+			// Getting all child elements in the "persons" list element
+			List<MobileElement> entries = personsList.findElementsByXPath(".//*");
+			// Looking for the relevant element
+			for (int i = 0; i < entries.size(); i++) {
+				if (entries.get(i).getText().equals(fullName)) {
+					index = i;
+					break;
+				}
+			}
+			
+			// Checking if the element was found or not
+			if (index == -1) {
+				setMessage(fullName + " was not found in the list");
+				return ExecutionResultType.Failed;
+			}
+			else {
+				setMessage(fullName + " was found at position: " + index);
+				return ExecutionResultType.Passed;
 			}
 		}
-		
-		// Checking if the element was found or not
-		if (index == -1) {
-			setMessage(fullName + " was not found in the list");
+		catch (Exception ex) {
+			setMessage(ex.getMessage());
 			return ExecutionResultType.Failed;
-		}
-		else {
-			setMessage(fullName + " was found at position: " + index);
-			return ExecutionResultType.Passed;
-		}
-
+			}
 	}
 
 }
