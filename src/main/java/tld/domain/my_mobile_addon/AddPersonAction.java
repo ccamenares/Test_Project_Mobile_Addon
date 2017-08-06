@@ -11,6 +11,7 @@ public class AddPersonAction extends Action {
 
 	String firstName;
 	String lastName;
+	String fullName;
 	
 	@Override
 	protected ExecutionResultType execute() throws Exception {
@@ -24,6 +25,13 @@ public class AddPersonAction extends Action {
 		// Find Last name element and type last name (e.g. 'Smith')
 		MobileElement lastNameElement = androidDriver.findElement(By.id("lastName"));
 		lastNameElement.sendKeys(this.lastName);
+		
+		// Find Full Name element
+		MobileElement fullNameElement = androidDriver.findElement(By.id("fullName"));
+		this.fullName = fullNameElement.getText();
+		// Find the Add button and click it
+		MobileElement addButtonElement = androidDriver.findElement(By.id("add"));
+		addButtonElement.click();
 		
 		return null;
 	}
